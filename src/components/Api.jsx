@@ -1,5 +1,5 @@
 // api key'i public olarak yayınlamamak için .jsx'te object haline getirdim ve .gitignore'a ekledim
-import ApiKey from "./ApiKey"
+import ApiKey from "../ApiKey"
 // JSX'teki değerleri yakalamak ve onları değiştirmek için useState kullanıyorum
 import { useState } from "react"
 
@@ -43,7 +43,7 @@ function Api() {
         }
       })
   }
-  console.log(temp)
+
   return (
     <div className="form-div">
       <form onSubmit={handleSubmit}>
@@ -54,10 +54,11 @@ function Api() {
           onChange={handleTextChange}
           type="text"
           value={cityName}
-          debounceTimeout={600}
           placeholder="Kars.."
         />
-        <button type="submit">Send</button>
+        <button type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
         <h2>{temp}</h2>
 
         <div className="description">
