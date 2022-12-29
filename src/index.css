@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #d5d4d4;
+  background-color: #f3f3f3;
 }
 
 code {
@@ -16,12 +16,11 @@ code {
 /* --------------------------------------------------------------------------------------------------------- */
 
 form {
-  width: 50rem;
+  width: 30rem;
   text-align: center;
-}
-
-#root {
-  padding: 0 10rem 0;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .description {
@@ -29,6 +28,7 @@ form {
   display: inline-block;
   justify-content: space-between;
 }
+
 .description p {
   position: absolute;
   top: -0.5rem;
@@ -53,12 +53,14 @@ form {
 }
 
 .form-div {
-  margin-top: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 55rem;
+  margin: 5rem 10rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   background-color: rgb(117, 128, 233);
+  color: #f3f3f3;
   border-radius: 1.5rem;
   padding-top: 1.5rem;
 }
@@ -71,34 +73,43 @@ form {
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
+  border-bottom: 1px solid;
   border-radius: 1.5rem;
   font-size: 2rem;
-  background-color: rgb(186, 226, 226);
+  /* background-color: rgb(186, 226, 226); */
+  background-color: transparent;
   color: #fff;
   cursor: pointer;
-}
-
-.form-div button {
-  background-color: rgb(186, 226, 226);
-  margin-left: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  justify-content: center;
-  align-self: center;
-  text-align: center;
-  /* /// */
-  text-decoration: none;
-  text-transform: uppercase;
-  color: rgb(113, 135, 207);
   overflow: hidden;
   transition: color 1s;
 }
 
-.form-div button:hover {
+.form-div form input::placeholder {
+  color: #fff;
+}
+.form-div form input:focus::placeholder {
+  color: #000;
+}
+.form-div button {
+  background-color: transparent;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.3rem;
+  /* /// */
+  position: absolute;
+  right: 1rem;
+  bottom: -0.5rem;
+}
+
+.form-div .input-button {
+  position: relative;
+  display: inline;
+}
+
+.form-div form input:hover {
   color: #090909;
-  outline: 2px solid #7effb2;
 }
 
 .form-div h1 {
@@ -121,6 +132,29 @@ form {
   padding: 0;
 }
 
+header {
+  background-color: #f5ba13;
+  padding: 5px 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  border-bottom: 1.5rem;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.TR {
+  display: inline-block;
+  margin: 0 auto 1rem;
+  padding: 0 2rem;
+  background-color: rgb(106, 118, 223);
+  color: #ececec;
+  border-radius: 1.5rem;
+}
+.TR h5 {
+  margin-block: 3rem;
+}
+
 @media screen and (max-width: 1250px) {
   .default {
     display: flex;
@@ -133,13 +167,23 @@ form {
     justify-content: center;
     text-align: center;
   }
-}
-
-@media screen and (max-width: 700px) {
-  .form-div form input {
-    width: 12rem;
+  .form-div {
+    width: auto;
   }
-  #root {
-    padding: 0 1rem 0;
+}
+@media screen and (max-width: 870px) {
+  .TR {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  form {
+    width: auto;
+  }
+  .form-div form input {
+    width: 15rem;
+  }
+  .form-div {
+    width: auto;
   }
 }

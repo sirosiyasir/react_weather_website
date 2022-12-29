@@ -4,12 +4,14 @@ import Card from "../CreateCard"
 
 function Ankara() {
   // api'leri fetch içerisinde yakalamak için useState kullanıyorum
-  const [temperature, setTemperature] = useState("")
-  const [icon, setIcon] = useState("")
-  const [description, setDescription] = useState("")
-  const [feelsLike, setFeelsLike] = useState("")
-  const [humidity, setHumidity] = useState("")
-  const [city, setCity] = useState("")
+  const [apıInfo, setApıInfo] = useState({
+    image: "",
+    description: "",
+    feelsLike: "",
+    humidity: "",
+    temp: "",
+    city: "",
+  })
   const apikey = ApiKey.apiKey
   const unit = "metric"
 
@@ -18,23 +20,29 @@ function Ankara() {
   )
     .then((resp) => resp.json())
     .then((data) => {
-      setTemperature("Temperature: " + data.main.temp)
-      setFeelsLike("Fells like: " + data.main.feels_like)
-      setHumidity("Humidity: " + data.main.humidity)
-      setDescription(data.weather[0].main)
-      setIcon(
-        "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
-      )
-      setCity(data.name)
+      setApıInfo(() => {
+        return {
+          temp: "Temperature: " + data.main.temp + "°",
+          image:
+            "https://openweathermap.org/img/wn/" +
+            data.weather[0].icon +
+            "@2x.png",
+          description: data.weather[0].main,
+          feelsLike: "Fells like: " + data.main.feels_like,
+          humidity: "Humidity: " + data.main.humidity,
+          city: data.name,
+        }
+      })
     })
 
-  // direk state olarak <Card />'ın içine koyamadığım için önce variable'a sabitliyorum
-  let tempCard = temperature
-  let iconCard = icon
-  let descriptionCard = description
-  let feelsLikeCard = feelsLike
-  let humidityCard = humidity
-  let cityCard = city
+  // direk state olarak <Card />'ın içine koyamadığım için önce variable'a sabitliyorum(direkt koyduğum zaman sürekli olarak Card'taki apiyi güncelliyor bu da gereksiz
+  // api isteğine sebep oluyor)
+  let tempCard = apıInfo.temp
+  let iconCard = apıInfo.image
+  let descriptionCard = apıInfo.description
+  let feelsLikeCard = apıInfo.feelsLike
+  let humidityCard = apıInfo.humidity
+  let cityCard = apıInfo.city
 
   // return ederek yeni bir card oluşturuyorum props sayesinde de createCard.jsx'e
   // bilgi akışı yapıyorum

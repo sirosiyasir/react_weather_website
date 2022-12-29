@@ -5,15 +5,17 @@ import Api from "./components/Api"
 import Istanbul from "./components/DefaultCitys/Istanbul"
 import Ankara from "./components/DefaultCitys/Ankara"
 import Izmır from "./components/DefaultCitys/Izmır"
+import Header from "./components/Header"
 
 function App(props) {
   return (
     <div>
+      <Header />
       <Api />
       <div className="default">
-        <Istanbul />
+        {/* <Istanbul />
         <Ankara />
-        <Izmır />
+        <Izmır /> */}
       </div>
     </div>
   )
