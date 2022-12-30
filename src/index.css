@@ -5,7 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
+  background-color: #5f98e4;
+  background-image: url("https://wallpaperaccess.com/full/316117.jpg");
+  background-size: cover;
+  background-position: left;
 }
 
 code {
@@ -23,6 +27,11 @@ form {
   margin-right: auto;
 }
 
+.backgroundImg {
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/ca/f3/3b/caf33b6f1e780a09082433dbae2e9fd1.jpg");
+}
+
 .description {
   position: relative;
   display: inline-block;
@@ -38,6 +47,7 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: #f1f1f1;
 }
 
 .default-city {
@@ -46,8 +56,8 @@ form {
   display: flex;
   justify-content: center;
   text-align: center;
-  background-color: rgb(117, 128, 233);
-  color: #fff;
+  color: rgb(5, 5, 5);
+  text-shadow: 2px 2px #fff;
   border-radius: 1.5rem;
   padding-top: 1.5rem;
 }
@@ -59,8 +69,10 @@ form {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background-color: rgb(117, 128, 233);
-  color: #f3f3f3;
+  background-color: rgb(90, 156, 243);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  border-bottom: 1.5rem;
+  color: #000000;
   border-radius: 1.5rem;
   padding-top: 1.5rem;
 }
@@ -86,6 +98,7 @@ form {
 
 .form-div form input::placeholder {
   color: #fff;
+  opacity: 0.5;
 }
 .form-div form input:focus::placeholder {
   color: #000;
@@ -133,13 +146,16 @@ form {
 }
 
 header {
-  background-color: #f5ba13;
-  padding: 5px 0;
+  background-color: #3879b6;
+  padding: 1px 0;
+  margin: auto 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   border-bottom: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
 }
 
-header h1 {
+header h2 {
   text-align: center;
 }
 
@@ -147,12 +163,18 @@ header h1 {
   display: inline-block;
   margin: 0 auto 1rem;
   padding: 0 2rem;
-  background-color: rgb(106, 118, 223);
+  /* background-color: rgb(106, 118, 223); */
+  background-color: transparent;
   color: #ececec;
   border-radius: 1.5rem;
 }
 .TR h5 {
   margin-block: 3rem;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px solid;
+  border-radius: 1.5rem;
+  color: #636161;
 }
 
 @media screen and (max-width: 1250px) {
@@ -169,11 +191,18 @@ header h1 {
   }
   .form-div {
     width: auto;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 @media screen and (max-width: 870px) {
   .TR {
     display: none;
+  }
+
+  .form-div .more-info h4 {
+    display: block;
+    margin-top: 13px;
   }
 }
 @media screen and (max-width: 700px) {
@@ -182,8 +211,5 @@ header h1 {
   }
   .form-div form input {
     width: 15rem;
-  }
-  .form-div {
-    width: auto;
   }
 }

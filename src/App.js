@@ -13,9 +13,9 @@ function App(props) {
       <Header />
       <Api />
       <div className="default">
-        {/* <Istanbul />
+        <Istanbul />
         <Ankara />
-        <Izmır /> */}
+        <Izmır />
       </div>
     </div>
   )
