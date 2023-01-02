@@ -48,6 +48,7 @@ form {
   flex-direction: row;
   justify-content: center;
   background-color: #f1f1f1;
+  margin-bottom: -2rem;
 }
 
 .default-city {
@@ -145,8 +146,20 @@ form {
   padding: 0;
 }
 
+footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+}
+
+footer p {
+  color: #ccc;
+}
+
 header {
-  background-color: #3879b6;
+  background-color: transparent;
   padding: 1px 0;
   margin: auto 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -157,6 +170,7 @@ header {
 
 header h2 {
   text-align: center;
+  text-shadow: 0 0 3px rgb(255, 255, 255);
 }
 
 .TR {
