@@ -54,4 +54,20 @@ function Card(props) {
   )
 }
 
-export default Card
+function createCard(data) {
+  return (
+    <Card
+      key={data.weather[0].id}
+      temp={"Temperature: " + data.main.temp + "°"}
+      icon={
+        "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+      }
+      description={data.weather[0].main}
+      feelsLike={"Fells like: " + data.main.feels_like + "°"}
+      humidity={"Humidity: " + data.main.humidity}
+      city={data.name}
+    />
+  )
+}
+
+export default createCard
