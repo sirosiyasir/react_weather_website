@@ -55,9 +55,10 @@ function Card(props) {
 }
 
 function createCard(data) {
+  // burada Card'ı oluşturuyorum ve props sayesinde API'den gelen bilgilerle dolduruyorum.
   return (
     <Card
-      key={data.weather[0].id}
+      key={data.id}
       temp={"Temperature: " + data.main.temp + "°"}
       icon={
         "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import ApiKey from "../../ApiKey"
-import createCard from "../CreateCard"
 
 function DefaultCity() {
   // url'den gelecek olan 3 adet api'yi .map'le birlikte kullanabilmek useState kullanarak için array içerisine koyuyorum
