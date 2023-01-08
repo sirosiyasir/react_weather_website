@@ -2,8 +2,8 @@
 içerisinde oluşturmalısınız. Daha sonra export etmeniz yeterlidir(Dosya ismi doğru olmalı ve function şeklinde olmalı. Api.jsx ve DefaultCitys klasöründeki dosyalarda
 api keyi bu yöntemle kullandım.(İKİNCİ  YOL) İsterseniz dosyaların içerisinde oluşturduğum Apikey importlarını ve apikey constlarını silebilir ve yalnızca url içerisine apinizi ekleyebilirsiniz )*/
 import Api from "./components/Api"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import Header from "./components/shared/Header.jsx"
+import Footer from "./components/shared/Footer.jsx"
 import DefaultCity from "./components/DefaultCitys/defaultCity"
 import createCard from "./components/CreateCard"
 

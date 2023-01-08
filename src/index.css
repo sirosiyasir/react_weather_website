@@ -73,7 +73,8 @@ form {
   background-color: rgb(90, 156, 243);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   border-bottom: 1.5rem;
-  color: #000000;
+  color: rgb(5, 5, 5);
+  text-shadow: 2px 2px #fff;
   border-radius: 1.5rem;
   padding-top: 1.5rem;
 }
@@ -98,7 +99,7 @@ form {
 }
 
 .form-div form input::placeholder {
-  color: #fff;
+  color: #636161;
   opacity: 0.5;
 }
 .form-div form input:focus::placeholder {
@@ -188,7 +189,8 @@ header h2 {
   border-right-style: none;
   border-bottom: 1px solid;
   border-radius: 1.5rem;
-  color: #636161;
+  color: #fff;
+  text-shadow: 2px 2px #000;
 }
 
 @media screen and (max-width: 1250px) {

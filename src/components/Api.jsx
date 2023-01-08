@@ -2,6 +2,10 @@
 import ApiKey from "../ApiKey"
 // JSX'teki değerleri yakalamak ve onları değiştirmek için useState kullanıyorum
 import { useState, useEffect } from "react"
+//Spinner.gif'i import ediyorum
+import Spinner from "./shared/Spinner.jsx"
+// WeatherDescription.jsx'i kullanarak backgroundImage'i hava durumuna göre değiştiriyorum
+import weatherDescription from "./shared/WeatherDescription.jsx"
 
 function Api() {
   // kullanıcının inputa girdiği şehri yakalamak için cityName adında state oluşturuyorum
@@ -21,6 +25,8 @@ function Api() {
     pressure: "",
     country: "",
   })
+//Spinner'ı çalıştırmak için true ve false şeklinde yöneteceğim bir useState oluşturuyorum
+const [loading, setLoading] = useState(false)
 
   // API key'imi "apikey" const'una kaydediyorum
   const apikey = ApiKey.apiKey
@@ -32,6 +38,7 @@ function Api() {
 
   /* ----Default olarak Düzce'nin hava durumunu yansıtıyorum---- */
   useEffect(() => {
+    setLoading(true)
     const unit = "metric"
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apikey}&units=${unit}`
@@ -68,6 +75,13 @@ function Api() {
 
   // form gönderildikten sonra api'yi çalıştırıyorum
   function handleSubmit(e) {
+    /* setTimeout sayesinde form gönderildikten 100 milisaniye sonra loading.gif döndürülecek ve 500 milisaniye içindeyse hava durumu bilgileri.. */
+
+    setLoading(false)
+    setTimeout(() => {
+      setLoading(true)
+    }, 500); 
+
     e.preventDefault()
     const unit = "metric"
 
@@ -82,8 +96,7 @@ function Api() {
           setApıInfo(() => {
             return {
               temp: "Temperature: " + api.main.temp + "°",
-              image:
-                "https://openweathermap.org/img/wn/" +
+              image: "https://openweathermap.org/img/wn/" +
                 api.weather[0].icon +
                 "@2x.png",
               description: api.weather[0].main,
@@ -101,45 +114,21 @@ function Api() {
         }
       })
   }
+  
 
-  const weatherDescription = () => {
-    switch (apıInfo.description) {
-      case "Clear":
-        return "https://i.pinimg.com/originals/ca/f3/3b/caf33b6f1e780a09082433dbae2e9fd1.jpg"
-        break
-      case "Mist":
-        return "https://images.unsplash.com/photo-1603794052293-650dbdeef72c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bWlzdHxlbnwwfHwwfHw%3D&w=1000&q=80"
-        break
-      case "Clouds":
-        return "https://scied.ucar.edu/sites/default/files/styles/half_width/public/2021-10/cumulus-clouds.jpg?itok=qsNXhfWh"
-        break
-      case "Thunderstorm":
-        return "https://images.newscientist.com/wp-content/uploads/2019/03/20115708/gettyimages-673747736.jpg"
-        break
-      case "Rain":
-        return "https://cdn.kpbs.org/dims4/default/ce33be2/2147483647/strip/true/crop/4032x2268+0+378/resize/1200x675!/quality/90/?url=http%3A%2F%2Fkpbs-brightspot.s3.amazonaws.com%2Fc2%2Fbe%2F85b3755442799f1149136e16ddb8%2Frain-allied-gardens.jpg"
-        break
-      case "Snow":
-        return "https://media.istockphoto.com/id/1066960598/photo/winter-holiday-background-with-snow-copy-space.jpg?s=612x612&w=0&k=20&c=KjOIp2ns1988noHZXBT8DbS3fOlhd_GXSHsoO7vtAeE="
-        break
-      case "Drizzle":
-        return "https://thumbs.dreamstime.com/b/drizzle-rainforest-drizzling-tropical-gives-cold-refresh-emotion-55108517.jpg"
-        break
-    }
-  }
-
-  return (
-    <div
-      style={{
-        backgroundImage: `url(${weatherDescription()})`,
+  /* Eğer loading state'i true'ysa hava durumu bilgileri gösterilecek , false'sa <Spinner/>(loading.gif) gösterilecek */
+  return loading ? (
+    <div style={{
+        backgroundImage: `url(${weatherDescription(apıInfo.description)})`,
         backgroundSize: "cover",
       }}
       className="form-div"
     >
+    {/* className'de ? : operatörü kullanıp öbür elementler'de kullanmamamın sebebii , className'in değerinin boolean olamamasıdır */}
       <div className={apıInfo.country}>
-        <h5>{apıInfo.tempMin}</h5>
-        <h5>{apıInfo.tempMax}</h5>
-        <h5>{apıInfo.pressure}</h5>
+        <h5>{ apıInfo.tempMin}</h5>
+        <h5>{ apıInfo.tempMax}</h5>
+        <h5>{ apıInfo.pressure}</h5>
       </div>
       <form onSubmit={handleSubmit}>
         {/* burada value={cityName} kullanma nedenim , bu olmadan React'in bize uyarı vermesidir. Verilen uyarı kontrollü ve kontrolsüz girişlerle alakalıdır
@@ -149,33 +138,49 @@ function Api() {
           <input
             onChange={handleTextChange}
             type="text"
-            placeholder="Düzce.."
+            placeholder={cityName + "..."}
           />
           <button type="submit">
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
-        <h2>{apıInfo.temp}</h2>
+        <h2>{ apıInfo.temp}</h2>
 
-        <div className="description">
-          <p>{apıInfo.description}</p>
-          <img src={apıInfo.image} />
-        </div>
+         <div className="description">
+          <p>{ apıInfo.description}</p>
+          <img src={ loading ? apıInfo.image : "https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif"} style={{width:"100px", marginLeft:"7px", }}/>
+        </div> 
+      
         <div className="more-info">
-          <h4>{apıInfo.feelsLike}</h4>
-          <h4>{apıInfo.humidity}</h4>
+          <h4>{ apıInfo.feelsLike}</h4>
+          <h4>{ apıInfo.humidity}</h4>
         </div>
       </form>
       {/* className'i api'den almamın sebebi div'e verdiğim backgroundColor'ın default olarak gözükmesi
       (yani daha şehir aratılmadan ve tabii bu bilgiler apiden doldurulmadan ekranda oval kutucuklar görünüyor) */}
       <div className={apıInfo.country}>
-        <h5>{apıInfo.visibility}</h5>
-        <h5>{apıInfo.windSpeed}</h5>
-        <h5>{apıInfo.windDeg}</h5>
+        <h5>{ apıInfo.visibility}</h5>
+        <h5>{ apıInfo.windSpeed}</h5>
+        <h5>{ apıInfo.windDeg}</h5>
       </div>
     </div>
-  )
+  ) : <div className="form-div" style={{height:"300px"}}>
+  <form>
+  <div className="input-button">
+          <input
+            onChange={handleTextChange}
+            type="text"
+            placeholder="Düzce.."
+            value={cityName}
+          />
+          <button type="submit">
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>  
+  </form>
+  <Spinner />
+  </div> 
 }
 
 export default Api
