@@ -80,7 +80,7 @@ form {
 }
 
 .form-div form input {
-  width: 20rem;
+  width: 25rem;
   height: 3rem;
   padding: 1rem;
   outline: none;
@@ -99,7 +99,7 @@ form {
 }
 
 .form-div form input::placeholder {
-  color: #636161;
+  color: #2b2a2a;
   opacity: 0.5;
 }
 .form-div form input:focus::placeholder {

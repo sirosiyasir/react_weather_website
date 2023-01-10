@@ -7,7 +7,7 @@ import Footer from "./components/shared/Footer.jsx"
 import DefaultCity from "./components/DefaultCitys/defaultCity"
 import createCard from "./components/CreateCard"
 
-function App(props) {
+function App() {
   return (
     <div>
       <Header />
