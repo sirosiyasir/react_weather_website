@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react"
+/* BU SAYFA ŞU ANDA ÇALIŞMIYOR(Promise.all'da hata veriyor) AMA DAHA ÖNCE YALNIZ BU .jsx DOSYASINI KULLANARAK 3 FARKLI ŞEHRİN API BİLGİSİNİ YANSITIYORDUM */
+import { useState, useEffect } from "react"
 import ApiKey from "../../ApiKey"
 
 function DefaultCity() {
   // url'den gelecek olan 3 adet api'yi .map'le birlikte kullanabilmek useState kullanarak için array içerisine koyuyorum
   const [apıInfo, setApıInfo] = useState([])
 
-  const apikey = ApiKey.apiKey
+  /*   const apikey = ApiKey.apiKey */
   const unit = "metric"
 
   useEffect(() => {

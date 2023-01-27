@@ -1,10 +1,11 @@
+/* BU SAYFA ŞU ANDA ÇALIŞMIYOR(defaultCity.jsx sayfası Promise.all'da hata verdiği için) AMA DAHA 
+ÖNCE defaultCity.jsx'yle BİRLİKTE KULLANARAK 3 FARKLI ŞEHRİN API BİLGİSİNİ YANSITIYORDUM */
 import React, { useState } from "react"
 // WeatherDescription.jsx'i kullanarak backgroundImage'i hava durumuna göre değiştiriyorum
 import weatherDescription from "./shared/WeatherDescription.jsx"
 
 //props sayesinde DefaultCitys'teki bilgileri aktarıyor ve Card oluşturuyorum
 function Card(props) {
-
   return (
     <div
       style={{
