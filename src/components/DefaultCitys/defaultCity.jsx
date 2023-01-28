@@ -1,31 +1,33 @@
-/* BU SAYFA ŞU ANDA ÇALIŞMIYOR(Promise.all'da hata veriyor) AMA DAHA ÖNCE YALNIZ BU .jsx DOSYASINI KULLANARAK 3 FARKLI ŞEHRİN API BİLGİSİNİ YANSITIYORDUM */
-import { useState, useEffect } from "react"
 import ApiKey from "../../ApiKey"
+import { useState, useEffect } from "react"
 
-function DefaultCity() {
-  // url'den gelecek olan 3 adet api'yi .map'le birlikte kullanabilmek useState kullanarak için array içerisine koyuyorum
-  const [apıInfo, setApıInfo] = useState([])
-
-  /*   const apikey = ApiKey.apiKey */
+function ChatGPTApıDeneme() {
+  const [data, setData] = useState([])
+  const apikey = ApiKey.apiKey
   const unit = "metric"
-
+  // bir kerede birden fazla data alabilmek için Promise.all'ı kullanıyorum
   useEffect(() => {
-    // useEffect kullanılmadığı zaman apiye dakikada binlerce istek gönderiyor çünkü isteği herhangi bir event'e bağlamadık
-    // bu yüzden de useEffect kullanmamız gerekti. (Mesela Api.jsx'te event'e bağladığımız için bu useEffect kullanmadan da isteği yakaladık)
-    Promise.all(
-      ["İzmir", "İstanbul", "Ankara"].map((id) =>
-        fetch(
-          `http://api.openweathermap.org/data/2.5/weather?q=${id}&appid=${apikey}&units=${unit}`
-        ).then((response) => response.json())
-      )
-    ).then((data) => {
-      setApıInfo(() => {
-        return data
+    Promise.all([
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=İzmir&appid=${apikey}&units=${unit}`
+      ),
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=Ankara&appid=${apikey}&units=${unit}`
+      ),
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=İstanbul&appid=${apikey}&units=${unit}`
+      ),
+    ])
+      .then((responses) => {
+        return Promise.all(responses.map((response) => response.json()))
       })
-    })
-  }, [])
+      .then((data) => {
+        setData(data)
+      })
+      .catch((error) => console.error(error))
+  }, [apikey])
 
-  return apıInfo
+  return data
 }
 
-export default DefaultCity
+export default ChatGPTApıDeneme

@@ -4,11 +4,8 @@ api keyi bu yöntemle kullandım.(İKİNCİ  YOL) İsterseniz dosyaların içeri
 import Api from "./components/Api"
 import Header from "./components/shared/Header.jsx"
 import Footer from "./components/shared/Footer.jsx"
-/* import DefaultCity from "./components/DefaultCitys/defaultCity"
-import createCard from "./components/CreateCard" */
-import İzmir from "./components/DefaultCitys/İzmir"
-import İstanbul from "./components/DefaultCitys/İstanbul"
-import Ankara from "./components/DefaultCitys/Ankara"
+import DefaultCity from "./components/DefaultCitys/defaultCity"
+import createCard from "./components/CreateCard"
 
 function App() {
   return (
@@ -17,9 +14,7 @@ function App() {
       <Api />
       <div className="default">
         {/* .map yöntemiyle api'den gelen bilgileri createCard'a aktarıyoruz */}
-        <İzmir />
-        <Ankara />
-        <İstanbul />
+        {DefaultCity().map(createCard)}
       </div>
       <Footer />
     </div>
